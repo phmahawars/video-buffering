@@ -16,8 +16,10 @@ $mimeType = mime_content_type($videoFile);
 header('Content-Type: ' . $mimeType);
 header('Content-Length: ' . $fileSize);
 header('Accept-Ranges: bytes');
+header('Cache-Control: no-cache');
+header('Pragma: no-cache');
 
-// Handle HTTP Range Requests for partial content delivery (essential for buffering)
+// Handle HTTP Range Requests for partial content delivery
 if (isset($_SERVER['HTTP_RANGE'])) {
     $range = $_SERVER['HTTP_RANGE'];
     list(, $range) = explode('=', $range, 2);
@@ -40,11 +42,11 @@ if ($fp === false) {
     exit("Could not open video file.");
 }
 
-// Seek to the requested byte position (for range requests)
+// Seek to the requested byte position
 fseek($fp, $start);
 
-// Stream the file in small chunks
-$bufferSize = 1024 * 2; // 2KB buffer size
+// Stream the file in larger chunks
+$bufferSize = 1024 * 16; // 16KB buffer size
 while (!feof($fp) && ($start <= $end)) {
     $bytesToRead = min($bufferSize, $end - $start + 1);
     echo fread($fp, $bytesToRead);
