@@ -46,7 +46,7 @@ if ($fp === false) {
 fseek($fp, $start);
 
 // Stream the file in larger chunks
-$bufferSize = 1024 * 50; // 32KB buffer size for faster loading
+$bufferSize = 1024 * 2; // 32KB buffer size for faster loading
 while (!feof($fp) && ($start <= $end)) {
     $bytesToRead = min($bufferSize, $end - $start + 1);
     echo fread($fp, $bytesToRead);
