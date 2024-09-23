@@ -1,6 +1,6 @@
 <?php
 // Path to your video file
-$videoFile = 'video/video.mp4';
+$videoFile = 'video/earth_in_4k_by_onehome_-_1_hour%20(2160p).mp4';
 
 // Check if the file exists
 if (!file_exists($videoFile)) {
