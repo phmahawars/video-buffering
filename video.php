@@ -44,7 +44,7 @@ if ($fp === false) {
 fseek($fp, $start);
 
 // Stream the file in small chunks
-$bufferSize = 1024 * 2; // 8KB buffer size
+$bufferSize = 1024 * 16; // 8KB buffer size
 while (!feof($fp) && ($start <= $end)) {
     $bytesToRead = min($bufferSize, $end - $start + 1);
     echo fread($fp, $bytesToRead);
