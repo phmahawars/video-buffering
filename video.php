@@ -59,7 +59,7 @@ while (!feof($fp) && ($start <= $end)) {
     $start += $bytesToRead;
 
     // Introduce a slight delay to help with buffering on slow connections
-    usleep(100000); // 0.1 seconds (100ms)
+    // usleep(100000); // 0.1 seconds (100ms)
 }
 
 fclose($fp);
